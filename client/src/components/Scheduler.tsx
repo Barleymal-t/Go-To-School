@@ -10,24 +10,31 @@ import useFetch from './useFetch';
 const Scheduler = () => {
 const {data,error,isLoading} = useFetch('http://127.0.0.1:5000/lessons');
 // console.log(data)
-console.log(new Date(2022,10,2,10,0) )
+// console.log(new Date(2022,10,2,10,0) )
 
-
+// // const lessons = [for]
+//     data.forEach((lesson)=>{
+//       console.log(lesson)
+//     })
 const localData:EventSettingsModel = {
   dataSource: [
-    data.map((item)=>item["msg"]),
-    // {
-    // start_time: new Date(2022,10,2,10,0),
-    // end_time: new Date(2022,10,2,12,0),
-    //     course_name: 'Embedded Systems',
-    //     RecurrenceRule: 'FREQ=WEEKLY; INTERVAL=1; COUNT=10',
-    //     courseId: 1
-    // }
+    {
+      start_time: new Date(2022,10,2,10,0),
+      end_time: new Date(2022,10,2,12,0),
+      course_name: 'Embedded Systems',
+      // RecurrenceRule: 'FREQ=WEEKLY; INTERVAL=1; COUNT=10',
+      room_number: 'Room 1',
+      courseId: 1
+    },
+    data[0]["msg"],
+    data[1]["msg"],
+    
   ],
   fields: {
     startTime: { name: 'start_time' },
     endTime: { name: 'end_time' },
     subject: { name: 'course_name' },
+    location: { name: 'room_number' },
   }
     
     
@@ -39,16 +46,16 @@ const localData:EventSettingsModel = {
 //     crossDomain: true
 // })
 
-  const resourceDataSource: Object[] = [
-    {Name: 'Embedded Systems', Id: 1, GroupId: 1, Color: '#cb6bb2'},
-  ]
+  // const resourceDataSource: Object[] = [
+  //   {Name: 'Embedded Systems', Id: 1, GroupId: 1, Color: '#cb6bb2'},
+  // ]
 
   return (
-    <ScheduleComponent currentView='Week' eventSettings={localData}>
-      <ResourcesDirective>
-        <ResourceDirective field='course_id' title='Course Name' name='C Programming' textField='Name' idField='Id' colorField='Color' allowMultiple={true} dataSource={resourceDataSource}>
+    <ScheduleComponent currentView='Week' selectedDate={new Date(2022,10,3)} eventSettings={localData}>
+      {/* <ResourcesDirective>
+        <ResourceDirective field='course_id' title='Course Name' name='C Programming' textField='Name' idField='courseId' colorField='Color' allowMultiple={true} dataSource={resourceDataSource}>
         </ResourceDirective>
-      </ResourcesDirective>
+      </ResourcesDirective> */}
         <Inject services={[Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop]} />
     </ScheduleComponent>
   )

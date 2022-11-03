@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, {useState,useRef} from 'react'
+import React, {useRef} from 'react'
 
 const RegistrationPage = () => {
     const [Login,setLogin] = React.useState(true)
