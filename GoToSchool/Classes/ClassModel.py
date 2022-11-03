@@ -5,7 +5,7 @@ from sqlalchemy.orm import relationship
 from base import Base
 
 
-class Class(Base):
+class Classi(Base):
     __tablename__ = 'Class'
     id_class = Column(Integer, primary_key=True, unique=True,
                         autoincrement=True, nullable=False)
