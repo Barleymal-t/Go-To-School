@@ -58,7 +58,7 @@ def createStudent():
             isStudent = session.query(Student).filter(
                 Student.user_email == user_email).first()
 
-            # If patient has already been registered
+            # If student has already been registered
             if (isStudent):
                 return ({
                         'status': False,
@@ -202,9 +202,8 @@ def studentLogin():
             }
         }), 404
 
-
-# 
-# 
+ 
+ 
 
 # Get student by ID
 @students_route.route("/students/<id>", methods=['GET'])
