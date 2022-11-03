@@ -7,12 +7,15 @@ from base import Base
 
 class Classi(Base):
     __tablename__ = 'Class'
-    id_class = Column(Integer, primary_key=True, unique=True,
+    idClass = Column(Integer(11), primary_key=True, unique=True,
                         autoincrement=True, nullable=False)
-    classSize = Column("classSize", String(60))
+    classSize = Column("classSize", Integer(11))
+    className = Column("classSize", String(10))
+
 
     
 
-    def __init__(self, classSize, ):
+    def __init__(self, classSize, className ):
         self.classSize = classSize
+        self.className = className
         

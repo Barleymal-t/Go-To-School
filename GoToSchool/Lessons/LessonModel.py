@@ -13,12 +13,12 @@ from base import Base
 
 class Lesson(Base):
     __tablename__ = 'Lesson'
-    id_lesson = Column(Integer, primary_key=True, unique=True,
+    idLesson = Column(Integer, primary_key=True, unique=True,
                         autoincrement=True, nullable=False)
     id_lecturer = Column(Integer, ForeignKey(Lecturer.id_lecturer), nullable=False)
-    id_course = Column("id_course", ForeignKey(Course.id_course), nullable=False)
-    id_class = Column("id_class", ForeignKey(Classi.id_class), nullable=False)
-    id_room = Column("id_room", ForeignKey(Room.id_room), nullable=False)
+    id_course = Column(Integer, ForeignKey(Course.id_course), nullable=False)
+    id_class = Column(Integer, ForeignKey(Classi.id_class), nullable=False)
+    id_room = Column(Integer, ForeignKey(Room.id_room), nullable=False)
     timeStart = Column('time_start',Date)
     timeEnd = Column('time_end',Date)
    
