@@ -84,7 +84,7 @@ def getLessonById(id):
 
 
 
-# delete patient
+# delete lesson
 @lessons_route.route("/lessons/<id>", methods=["DELETE"])
 def deleteLessonsById(id):
     from app import session
@@ -126,7 +126,15 @@ def deleteLessonsById(id):
 # def updateLessonDetailsById(id):
 #     from app import session
 #     req = request.json
-
+# 
+#id_Lecturer = req["id_lecturer"]
+# 
+# 
+# 
+# 
+# 
+# 
+# 
 #     try:
 #         lesson = session.query(Lesson).get(id)
 
