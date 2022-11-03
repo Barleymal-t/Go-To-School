@@ -28,8 +28,8 @@ def getlessonss():
             room = session.query(Room).get(lesson.idRoom)
             course = session.query(Course).get(lesson.idCourse)
 
-            Json_lessons.append({
-                "msg": {
+            Json_lessons.append(
+                {
 
                 "id_lesson": lesson.idLesson,
                 "id_lecturer": lecturer.idLecturer,
@@ -38,9 +38,22 @@ def getlessonss():
                 "room_number": room.room_name,
                 "start_time": lesson.timeStart,
                 "end_time": lesson.timeEnd,
-            },
-            "status": True
-            })
+            }
+            )
+                
+            #     {
+            #     "msg": {
+
+            #     "id_lesson": lesson.idLesson,
+            #     "id_lecturer": lecturer.idLecturer,
+            #     "course_name": course.courseName,
+            #     "class_name": classO.className,
+            #     "room_number": room.room_name,
+            #     "start_time": lesson.timeStart,
+            #     "end_time": lesson.timeEnd,
+            # },
+            # "status": True
+            # })
         return jsonify(Json_lessons), 200
     except Exception as e:
         return ({
@@ -84,7 +97,7 @@ def getLessonById(id):
 
 
 
-# delete patient
+# delete lesson
 @lessons_route.route("/lessons/<id>", methods=["DELETE"])
 def deleteLessonsById(id):
     from app import session
@@ -126,7 +139,15 @@ def deleteLessonsById(id):
 # def updateLessonDetailsById(id):
 #     from app import session
 #     req = request.json
-
+# 
+#id_Lecturer = req["id_lecturer"]
+# 
+# 
+# 
+# 
+# 
+# 
+# 
 #     try:
 #         lesson = session.query(Lesson).get(id)
 
