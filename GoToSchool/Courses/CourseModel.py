@@ -12,6 +12,9 @@ class Course(Base):
     courseCode = Column("courseCode", String(45))
     courseName = Column("courseName", String(45))
 
+    # relationships
+    lessons = relationship("Lesson", backref="course")
+
     
 
     def __init__(self, courseCode, courseName, ):
