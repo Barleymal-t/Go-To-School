@@ -1,7 +1,7 @@
 import React from 'react'
-import axios from 'axios';
+// import axios from 'axios';
 import {Inject, ScheduleComponent, Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop,EventSettingsModel, ResourcesDirective, ResourceDirective} from '@syncfusion/ej2-react-schedule';
-import { error } from 'console';
+// import { error } from 'console';
 import useFetch from './useFetch';
 
 
