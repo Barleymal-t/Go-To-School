@@ -7,9 +7,9 @@ from base import Base
 
 class Classi(Base):
     __tablename__ = 'Class'
-    idClass = Column(Integer(11), primary_key=True, unique=True,
+    idClass = Column(Integer, primary_key=True, unique=True,
                         autoincrement=True, nullable=False)
-    classSize = Column("classSize", Integer(11))
+    classSize = Column("classSize", Integer)
     className = Column("classSize", String(10))
 
 

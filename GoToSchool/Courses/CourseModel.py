@@ -7,7 +7,7 @@ from base import Base
 
 class Course(Base):
     __tablename__ = 'Course'
-    idCourse = Column(Integer(11), primary_key=True, unique=True,
+    idCourse = Column(Integer, primary_key=True, unique=True,
                         autoincrement=True, nullable=False)
     courseCode = Column("courseCode", String(45))
     courseName = Column("courseName", String(45))

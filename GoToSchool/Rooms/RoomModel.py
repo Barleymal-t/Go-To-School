@@ -7,10 +7,10 @@ from base import Base
 
 class Room(Base):
     __tablename__ = 'Room'
-    id_room = Column(Integer, primary_key=True, unique=True,
+    idRoom = Column(Integer, primary_key=True, unique=True,
                         autoincrement=True, nullable=False)
     room_name = Column("room_name", String(60))
-    room_capacity = Column("room_capacity", Integer(50), unique=True, nullable=False)
+    room_capacity = Column("room_capacity", Integer, unique=True, nullable=False)
 
     
 
