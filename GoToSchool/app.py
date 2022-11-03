@@ -59,5 +59,5 @@ def home():
 
 #Main Logic
 if __name__ == "__main__":
-    # CORS(app)
+    CORS(app)
     app.run(debug=True)

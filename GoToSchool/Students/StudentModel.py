@@ -12,7 +12,7 @@ class Student(Base):
     first_name = Column("firstName", String(45))
     last_name = Column("lastName", String(45))
     user_email = Column("email", String(45), unique=True, nullable=False)
-    user_password = Column("userPassword", String(45), nullable=False)
+    user_password = Column("userPassword", String(200), nullable=False)
     date_of_birth = Column("dOB", Date)
     id_proyear = Column("proyear", String(45), unique=True)
     # gender = Column("gender", String(45))

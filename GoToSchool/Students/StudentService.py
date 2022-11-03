@@ -121,6 +121,91 @@ def createStudent():
             }), 400
 
 
+# Student LogIn
+@students_route.route("/students/login", methods=['POST'])
+def studentLogin():
+    from app import session
+    content_type = request.headers.get('Content-Type')
+    if (content_type == 'application/json'):
+        req = request.json
+        user_email = req["user_email"].lower()
+        user_password = req["user_password"]
+
+    # Check Email to make sure the student is already registered
+        try:
+            id_student = session.query(Student.idStudent).filter(Student.user_email == user_email).first()
+            if (id_student):
+                studentInfo = session.query(Student).get(id_student)
+                session.commit()
+
+                # Check Password after user email has been verified to retreive corresponsing password hash
+                try:
+                    userDbPassword = str(studentInfo.user_password)
+                    if (check_password_hash(userDbPassword, user_password)):
+                        return ({
+                            "msg": {
+                                        "id_student": studentInfo.idStudent,
+                                        "first_name": studentInfo.first_name,
+                                        "last_name": studentInfo.last_name,
+                                        "user_email": studentInfo.user_email,
+                                        "user_password": studentInfo.user_password,
+                                        "date_of_birth": studentInfo.date_of_birth,
+                                        "id_proyear": studentInfo.id_proyear,
+                                    },
+                                        "status": True
+                        }), 200  # StatusCode
+                    else:
+                        return ({
+                            'status': False,
+                            'msg': {
+                                "dev_message": "",
+                                "message": "Incorrect Password. Kindly Try again"
+                            }
+                        }), 400
+
+                except Exception as e:
+                    session.rollback()
+                    return ({
+                        'status': False,
+                        'msg': {
+                            "dev_message": (f"{e}"),
+                            "message": "Connection Error: Could not login"
+                        }
+                    }), 400
+
+            # User has not yet been registered
+            else:
+                return ({
+                        'status': False,
+                        'msg': {
+                            "dev_message": "",
+                            "message": "User not registered.Do you want to sign up?"
+                        }
+                        }), 400
+
+        except Exception as e:
+            session.rollback()
+            print(e)
+            return ({
+                'status': False,
+                'msg': {
+                    "dev_message": (f"{e}"),
+                    "message": "Connection Error: Check your network connection"
+                }
+            }), 400
+    else:
+        return ({
+            'status': False,
+            'msg': {
+                "dev_message": "",
+                "message": "Bad Request Error"
+            }
+        }), 404
+
+
+# 
+# 
+
 # Get student by ID
 @students_route.route("/students/<id>", methods=['GET'])
 def getStudentById(id):
