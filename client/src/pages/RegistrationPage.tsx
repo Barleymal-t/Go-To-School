@@ -3,8 +3,8 @@ import React, {useState,useRef} from 'react'
 
 const RegistrationPage = () => {
     const [Login,setLogin] = React.useState(true)
-    const enteredLoginEmail = useRef<HTMLInputElement>(null)
-    const enteredLoginPassword = useRef<HTMLInputElement>(null)
+    const loginEmail = useRef<HTMLInputElement>(null)
+    const loginPassword = useRef<HTMLInputElement>(null)
 
 
     async function submitCredentials(path:string,data:Object) {
@@ -32,10 +32,21 @@ const RegistrationPage = () => {
         }
     }
 
-    const loginData = {
-    user_email: enteredLoginEmail,
-    user_password: enteredLoginPassword,
-    };
+    async function submitUserCredentialsHandler(){
+        const enteredLoginEmail = loginEmail.current?.value.trim();
+        const enteredLoginPassword = loginPassword.current?.value.trim();
+
+
+        const loginData = {
+        user_email: enteredLoginEmail,
+        user_password: enteredLoginPassword,
+        };
+
+        const feedback = await submitCredentials('login',loginData);
+        return await feedback;
+    }
+
+
 
   return (
     <>
@@ -55,8 +66,8 @@ const RegistrationPage = () => {
 
 
 
-    <input ref={enteredLoginEmail} type="text" className="border rounded-sm w-sm0%] my-4 py-2 pl-2 " placeholder='Email or Username' />
-    <input ref={enteredLoginPassword} type="text" className="border rounded-sm w-sm0%] my-4 py-2 pl-2 " placeholder='Password' />
+    <input ref={loginEmail} type="text" className="border rounded-sm w-sm0%] my-4 py-2 pl-2 " placeholder='Email or Username' />
+    <input ref={loginPassword} type="text" className="border rounded-sm w-sm0%] my-4 py-2 pl-2 " placeholder='Password' />
     <div className="grid grid-cols-2">
 
     <div className="flex mx-auto">
