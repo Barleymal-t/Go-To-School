@@ -12,6 +12,8 @@ class Classi(Base):
     classSize = Column("classSize", Integer)
     className = Column("classSize", String(10))
 
+    # relationships
+    lessons = relationship("Lesson", backref="class")
 
     
 

@@ -23,18 +23,18 @@ def getlessonss():
         Json_lessons = []
 
         for lesson in lessons:
-            lecturer = session.query(Lecturer).get(lesson.id_lecturer)
-            classO = session.query(Classi).get(lesson.id_class)
-            room = session.query(Room).get(lesson.id_room)
-            course = session.query(Course).get(lesson.id_course)
+            lecturer = session.query(Lecturer).get(lesson.idLecturer)
+            classO = session.query(Classi).get(lesson.idClass)
+            # room = session.query(Room).get(lesson.idRoom)
+            course = session.query(Course).get(lesson.idCourse)
 
             Json_lessons.append({
                 "msg": {
 
-                "id_lecturer": lecturer.id_lecturer,
-                "course_name": course.id_course,
-                "class_name": classO.id_class,
-                "room_number": room.id_room,
+                "id_lecturer": lecturer.idLecturer,
+                "course_name": course.idCourse,
+                "class_name": classO.idClass,
+                # "room_number": room.id_room,
                 "start_time": lesson.timeStart,
                 "end_time": lesson.timeEnd,
             },
@@ -85,3 +85,34 @@ def getlessonss():
 #                 "message": "Connection error: could not get students"
 #             }
 #         }), 400
+
+# Get lesson by ID
+@lessons_route.route("/lessons/<id>", methods=['GET'])
+def getLessonById(id):
+    from app import session
+    try:
+        lesson = session.query(Lesson).get(id)
+
+        return ({
+
+            "msg": {
+
+                "id_lecturer": lesson.idStudent,
+                "d_class": lesson.first_name,
+                "id_room": lesson.last_name,
+                "time_start": lesson.user_email,
+                "time_end": lesson.user_password,
+                "id_course": lesson.date_of_birth,
+            },
+            "status": True
+
+        }), 200
+    except Exception as e:
+        return ({
+            'status': False,
+            'msg': {
+                "dev_message": (f"{e}"),
+                "message": "Error: Student ID does not exist"
+            }
+        }), 400
+

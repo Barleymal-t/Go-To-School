@@ -15,6 +15,9 @@ class Lecturer(Base):
     user_password = Column("userPassword", String(200), nullable=False)
     date_of_birth = Column("dOB", Date)
 
+    # relationships
+    lessons = relationship("Lesson", backref="lecturer")
+
     
 
     def __init__(self, first_name, last_name, user_email, user_password, date_of_birth, ):
