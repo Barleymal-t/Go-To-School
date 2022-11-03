@@ -7,13 +7,13 @@ from base import Base
 
 class Lecturer(Base):
     __tablename__ = 'Lecturer'
-    id_lecturer = Column(Integer, primary_key=True, unique=True,
+    idLecturer = Column(Integer, primary_key=True, unique=True,
                         autoincrement=True, nullable=False)
-    first_name = Column("first_name", String(60))
-    last_name = Column("last_name", String(60))
-    user_email = Column("user_email", String(50), unique=True, nullable=False)
-    user_password = Column("user_password", String(200), nullable=False)
-    date_of_birth = Column("date_of_birth", Date)
+    first_name = Column("firstName", String(60))
+    last_name = Column("lastName", String(60))
+    user_email = Column("email", String(50), unique=True, nullable=False)
+    user_password = Column("userPassword", String(200), nullable=False)
+    date_of_birth = Column("dOB", Date)
 
     
 
