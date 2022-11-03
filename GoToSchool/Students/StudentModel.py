@@ -2,7 +2,6 @@ from enum import unique
 from sqlalchemy import Column, Integer, String, Date, ForeignKey, Float
 from sqlalchemy.orm import relationship
 
-# Forget about this guy
 from base import Base
 
 
@@ -18,7 +17,6 @@ class Student(Base):
     id_proyear = Column("id_number", String(45), unique=True)
     gender = Column("gender", String(45))
 
-    # relationships
     
 
     def __init__(self, first_name, last_name, user_email, user_password, date_of_birth, id_proyear, gender):
