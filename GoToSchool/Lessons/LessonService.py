@@ -25,16 +25,16 @@ def getlessonss():
         for lesson in lessons:
             lecturer = session.query(Lecturer).get(lesson.idLecturer)
             classO = session.query(Classi).get(lesson.idClass)
-            # room = session.query(Room).get(lesson.idRoom)
+            room = session.query(Room).get(lesson.idRoom)
             course = session.query(Course).get(lesson.idCourse)
 
             Json_lessons.append({
                 "msg": {
 
                 "id_lecturer": lecturer.idLecturer,
-                "course_name": course.idCourse,
-                "class_name": classO.idClass,
-                # "room_number": room.id_room,
+                "course_name": course.courseName,
+                "class_name": classO.className,
+                "room_number": room.room_name,
                 "start_time": lesson.timeStart,
                 "end_time": lesson.timeEnd,
             },

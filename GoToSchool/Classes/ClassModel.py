@@ -10,7 +10,7 @@ class Classi(Base):
     idClass = Column(Integer, primary_key=True, unique=True,
                         autoincrement=True, nullable=False)
     classSize = Column("classSize", Integer)
-    className = Column("classSize", String(10))
+    className = Column("className", String(10))
 
     # relationships
     lessons = relationship("Lesson", backref="class")
