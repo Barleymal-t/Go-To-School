@@ -1,7 +1,42 @@
-import React from 'react'
+import axios from 'axios';
+import React, {useState,useRef} from 'react'
 
-const Registration = () => {
+const RegistrationPage = () => {
     const [Login,setLogin] = React.useState(true)
+    const enteredLoginEmail = useRef<HTMLInputElement>(null)
+    const enteredLoginPassword = useRef<HTMLInputElement>(null)
+
+
+    async function submitCredentials(path:string,data:Object) {
+        axios.defaults.timeout = 10000;
+        axios.defaults.timeoutErrorMessage = 'timeout';
+        try {
+            const response = await axios({
+                method: 'POST',
+                url: `http://localhost:5000/api/${path}`,
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+               //Helpful in some cases.
+               'Access-Control-Allow-Headers': '*',
+               'Access-Control-Allow-Methods': '*',
+
+                },
+                data:data
+            })
+            console.log(response);
+            if (response.status === 200) {
+                setLogin(true);
+            }
+        } catch(error){
+
+        }
+    }
+
+    const loginData = {
+    user_email: enteredLoginEmail,
+    user_password: enteredLoginPassword,
+    };
+
   return (
     <>
     <div className="border py-10 mt-20 w-[80%] max-w-[1000px] mx-auto  ">
@@ -20,15 +55,15 @@ const Registration = () => {
 
 
 
-    <input type="text" className="border rounded-sm w-sm0%] my-4 py-2 pl-2 " placeholder='Email or Username' />
-    <input type="text" className="border rounded-sm w-sm0%] my-4 py-2 pl-2 " placeholder='Password' />
+    <input ref={enteredLoginEmail} type="text" className="border rounded-sm w-sm0%] my-4 py-2 pl-2 " placeholder='Email or Username' />
+    <input ref={enteredLoginPassword} type="text" className="border rounded-sm w-sm0%] my-4 py-2 pl-2 " placeholder='Password' />
     <div className="grid grid-cols-2">
 
     <div className="flex mx-auto">
     <input className="form-check-input" type="checkbox" value="" id="loginCheck" checked />
     <label className="form-check-label" htmlFor="loginCheck"> Remember me </label>
     </div>
-    <a href='#'>Forgot password?</a>
+    {/* <a href='#'>Forgot password?</a> */}
     </div>
     <button className="w-1/2 border py-2 rounded-md mx-auto my-4">Login</button>
     </div>
@@ -55,4 +90,4 @@ const Registration = () => {
   )
 }
 
-export default Registration
+export default RegistrationPage
