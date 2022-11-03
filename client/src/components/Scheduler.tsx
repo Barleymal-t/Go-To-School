@@ -17,19 +17,7 @@ const {data,error,isLoading} = useFetch('http://127.0.0.1:5000/lessons');
 //       console.log(lesson)
 //     })
 const localData:EventSettingsModel = {
-  dataSource: [
-    {
-      start_time: new Date(2022,10,2,10,0),
-      end_time: new Date(2022,10,2,12,0),
-      course_name: 'Embedded Systems',
-      // RecurrenceRule: 'FREQ=WEEKLY; INTERVAL=1; COUNT=10',
-      room_number: 'Room 1',
-      courseId: 1
-    },
-    data[0]["msg"],
-    data[1]["msg"],
-    
-  ],
+  dataSource: data,
   fields: {
     startTime: { name: 'start_time' },
     endTime: { name: 'end_time' },
